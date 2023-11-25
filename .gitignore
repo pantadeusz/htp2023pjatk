@@ -1,3 +1,6 @@
 .idea/
 htp/db.sqlite3
 htp/htp/__pycache__/
+ai/keras_predict_model/
+ai/logs/
+ai/data/.*
