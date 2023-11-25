@@ -98,7 +98,6 @@ def create_model(input_data_row, output_data_row):
         tf.keras.layers.Dense(len(output_data_row), activation='linear')]
     model = tf.keras.Sequential(layers)
     model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.01), loss='mean_absolute_error')
-    # model.compile(optimizer='adam', loss='mean_absolute_error', metrics=['accuracy'])
     return model
 
 
