@@ -95,9 +95,10 @@ def create_model(input_data_row, output_data_row):
     layers = [
         tf.keras.layers.Input(shape=(len(input_data_row),)),
         tf.keras.layers.Dense(100, activation='relu'),
+        tf.keras.layers.Dense(100, activation='relu'),
         tf.keras.layers.Dense(len(output_data_row), activation='linear')]
     model = tf.keras.Sequential(layers)
-    model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.01), loss='mean_absolute_error')
+    model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.0002), loss='mean_absolute_error')
     return model
 
 
@@ -115,7 +116,7 @@ def train_model(x_train, y_train):
 
     model = create_model(x_train[0], y_train[0])
 
-    history = model.fit(x_train, y_train, epochs=200, callbacks=[tensorboard_callback])
+    history = model.fit(x_train, y_train, epochs=150, callbacks=[tensorboard_callback])
     print(history)
     return model
 

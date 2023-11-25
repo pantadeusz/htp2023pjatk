@@ -18,7 +18,9 @@ The preparation was both manual and automatic. The tables had to be transposed. 
 
 The model was created using TensorFlow in Python. In the future it is possible to make it in C++ for better performance.
 
-The model is relatively simple - sequential with 3 layers. In the imput, there are three rows of data, and the output is one row, so it is classical approach to the time series analysis.
+The first version of model was verry simple - sequential with 3 layers. In the imput, there are three rows of data, and the output is one row, so it is classical approach to the time series analysis.
+
+The final version consists of 4 layers and provides better predictions. There is probability that the model is overfitted, but it is impossible to verify for the current dataset.
 
 ## Problems solved
 
