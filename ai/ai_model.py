@@ -196,7 +196,6 @@ def do_the_prediction(steps_back=0, input_datapoints='data/datapoints2023.csv', 
     model = None
     try:
         model = tf.keras.models.load_model(model_path)
-        print("Model ready")
     except:
         data_x, data_y = generate_x_y(data_rows)
         data_x, data_y = augment_data(data_x, data_y, n=500, noise=0.01)
@@ -207,8 +206,8 @@ def do_the_prediction(steps_back=0, input_datapoints='data/datapoints2023.csv', 
     row_index = len(data_rows) - how_old_the_data_should_be
     prediction = predict_for_data(model, [data_rows[row_index - 3][1:], data_rows[row_index - 2][1:],
                                           data_rows[row_index - 1][1:]])
-    print(prediction[0])
-    if (len(data_rows) > row_index): print(data_rows[row_index][1:])
+    #print(prediction[0])
+    #if (len(data_rows) > row_index): print(data_rows[row_index][1:])
 
     ret = []
     j = 0
@@ -217,7 +216,7 @@ def do_the_prediction(steps_back=0, input_datapoints='data/datapoints2023.csv', 
             ret.append({
                 "type": column_labels[i],
                 "unit": units[i],
-                "value": prediction[0][j],
+                "value": float(prediction[0][j]),
                 "sensor": places[i]
             })
             j = j + 1

@@ -19,8 +19,9 @@ cd htp
 python manage.py migrate
 python manage.py runserver
 ```
-The server will be at 
+The server will be at ```http://localhost:8000/```
 
+You can see how the AI model works calling ```http://localhost:8000/api/predict?steps_back=2```, where ```steps_back``` mean that you can select to do prediction for already known data to check the model. If 0, then the prediction will be for the next data row.
 
 # Additional documentation
 
