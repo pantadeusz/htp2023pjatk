@@ -4,3 +4,4 @@ htp/htp/__pycache__/
 ai/keras_predict_model/
 ai/logs/
 ai/data/.*
+htp/htp/api/__pycache__/
