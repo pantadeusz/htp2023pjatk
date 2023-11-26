@@ -1,6 +1,6 @@
 import serial
 import threading
-
+import re
 
 def read_serial(port, baudrate):
     try:
@@ -8,12 +8,18 @@ def read_serial(port, baudrate):
         while True:
             data = ser.readline().decode('utf-8').strip()
             print(f"Received: {data}")
+
+            # Check if the received data contains a number using regular expression
+            match = re.search(r'\d+', data)
+            if match:
+                number = int(match.group())
+                print(f"Detected Number: {number}")
+                
     except serial.SerialException as e:
         print(f"Error: {e}")
 
 
 if __name__ == "__main__":
-    # Replace 'COM8' and '9600' with your actual serial port and baud rate
     port_name = 'COM8'
     baud_rate = 115200
 
@@ -22,8 +28,6 @@ if __name__ == "__main__":
     serial_thread.start()
 
     try:
-        # Your main application code can go here
-        # For this example, we'll just wait for the serial thread to finish
         serial_thread.join()
     except KeyboardInterrupt:
         # Handle Ctrl+C to gracefully exit the program
