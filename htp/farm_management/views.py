@@ -1,5 +1,16 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,  get_object_or_404
 from .forms import FarmActivityAddForm
+from .models import Farm
+
+
+def farm_list(request):
+    farms = Farm.objects.all()
+    return render(request, 'farm_management/farm_list.html', {'farms': farms})
+
+
+def farm_detail(request, farm_id):
+    farm = get_object_or_404(Farm, pk=farm_id)
+    return render(request, 'farm_management/farm_detail.html', {'farm': farm})
 
 
 def add_activity(request):

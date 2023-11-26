@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ farm.name }} Details</title>
+</head>
+<body>
+
+<h1>{{ farm.name }} Details</h1>
+
+<p><strong>Location:</strong> {{ farm.location }}</p>
+<p><strong>Total Area:</strong> {{ farm.total_area }}</p>
+<p><strong>Compliance Status:</strong> {% if farm.compliance_status %}Compliant{% else %}Non-Compliant{% endif %}</p>
+
+<h2>Recent Activities</h2>
+
+<ul>
+    {% for activity in farm.farmactivity_set.all %}
+    <li>{{ activity.activity_type }} on {{ activity.date_time }}</li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farm List</title>
+</head>
+<body>
+
+<h1>Farm List</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Total Area</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for farm in farms %}
+        <tr>
+            <td>{{ farm.name }}</td>
+            <td>{{ farm.location }}</td>
+            <td>{{ farm.total_area }}</td>
+            <td><a href="{% url 'farm_detail' farm.id %}">Details</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>
