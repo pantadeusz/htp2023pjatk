@@ -3,10 +3,11 @@ from .forms import FarmActivityAddForm
 from .models import Farm, Measurement, SensorType
 
 from .serial_connection import start_measurement_thread
-import threading
+from django.http import JsonResponse
 
 
 start_measurement_thread()
+
 
 def farm_list(request):
     farms = Farm.objects.all()
@@ -43,4 +44,19 @@ def read_sensor(request):
 
     context = {'data': data}
     return render(request, 'farm_management/chart.html', context)
+
+
+def alert_status(request):
+    measurements = Measurement.objects.last()
+    print("Last measurement from database", measurements)
+
+    alert_status = False
+    if measurements.detected_number > 600:
+        alert_status = True
+
+    context = {'sensor_value': measurements.detected_number,
+               'alert': alert_status
+               }
+    return JsonResponse(context)
+
 
