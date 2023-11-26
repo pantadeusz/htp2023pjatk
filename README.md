@@ -14,8 +14,15 @@ I Assume no IDE - this is how we can start project on headless computer (server)
 ```sh
 python3 -m venv ./venv
 . ./venv/bin/activate
-pip install tensorflow==2.15.0; pip install django Django==4.2; pip install serial==0.0.97
+pip install tensorflow==2.15.0
+pip install django Django==4.2
+pip install pyserial
+pip install flask==3.0.0
 cd htp
+
+python manage.py makemigrations farm_management
+python manage.py migrate
+
 python manage.py migrate
 python manage.py runserver
 ```
