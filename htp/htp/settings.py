@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'farm_managment',
+    'farm_management',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

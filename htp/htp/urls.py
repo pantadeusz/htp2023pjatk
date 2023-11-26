@@ -16,9 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from . import api
+
+#from . import api
+
 
 urlpatterns = [
+    #path('farm/', include("farm_managment")),
     path("api/", include("htp.api.urls")),
     path('admin/', admin.site.urls),
+    path('farm/', include('farm_management.urls')),
 ]
