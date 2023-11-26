@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect,  get_object_or_404
 from .forms import FarmActivityAddForm
-from .models import Farm
+from .models import Farm, Measurement, SensorType
 
 from .serial_connection import start_measurement_thread
 import threading
@@ -31,4 +31,16 @@ def add_activity(request):
 
 
 def read_sensor(request):
-    return render(request, 'farm_management/sensor_read.html', {})
+    measurements = Measurement.objects.all()
+    sensor_types = [sensor_type[0] for sensor_type in SensorType.choices]
+
+    data = {}
+    for sensor_type in sensor_types:
+        sensor_measurements = measurements.filter(sensor_type=sensor_type)
+        data[sensor_type] = [
+            {'x': measurement.date_time.timestamp(), 'y': measurement.detected_number} for
+            measurement in sensor_measurements]
+
+    context = {'data': data}
+    return render(request, 'farm_management/chart.html', context)
+

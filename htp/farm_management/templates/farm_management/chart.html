@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensor Values Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<h1>Sensor Values Chart</h1>
+
+<canvas id="sensorChart" width="800" height="400"></canvas>
+
+<script>
+    var ctx = document.getElementById('sensorChart').getContext('2d');
+    var data = JSON.parse('{{ data|escapejs }}');
+
+    var datasets = [];
+    for (var sensorType in data) {
+        datasets.push({
+            label: sensorType,
+            data: data[sensorType],
+            borderColor: getRandomColor(),
+            fill: false,
+        });
+    }
+
+    var chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            datasets: datasets,
+        },
+        options: {
+            scales: {
+                x: [{
+                    type: 'linear',
+                    position: 'bottom',
+                }],
+                y: [{
+                    type: 'linear',
+                    position: 'left',
+                }],
+            },
+        },
+    });
+
+    function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+</script>
+
+</body>
+</html>

@@ -1,8 +1,10 @@
+import re
 import serial
 import threading
-import re
 from datetime import datetime
+
 from .models import Measurement
+from django.utils import timezone
 
 
 def read_serial(port, baudrate):
@@ -19,7 +21,7 @@ def read_serial(port, baudrate):
                 print(f"Detected Number: {number}")
 
                 measurement = Measurement.objects.create(
-                    date_time=datetime.now(),
+                    date_time=datetime.now(tz=timezone.utc),
                     detected_number=number
                 )
                 measurement.save()
