@@ -5,3 +5,4 @@ ai/keras_predict_model/
 ai/logs/
 ai/data/.*
 htp/htp/api/__pycache__/
+*.pyc
