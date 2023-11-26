@@ -2,6 +2,11 @@ from django.shortcuts import render, redirect,  get_object_or_404
 from .forms import FarmActivityAddForm
 from .models import Farm
 
+from .serial_connection import start_measurement_thread
+import threading
+
+
+start_measurement_thread()
 
 def farm_list(request):
     farms = Farm.objects.all()
@@ -23,3 +28,7 @@ def add_activity(request):
         form = FarmActivityAddForm()
 
     return render(request, 'farm_management/add_activity.html', {'form': form})
+
+
+def read_sensor(request):
+    return render(request, 'farm_management/sensor_read.html', {})
